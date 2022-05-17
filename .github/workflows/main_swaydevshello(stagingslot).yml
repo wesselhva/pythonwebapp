@@ -58,6 +58,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'swaydevshello'
-          slot-name: 'stagingslot'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7B57368891D74D8FA321093A5BE5C903 }}
+          app-name: 'wessel-simple-flask-app'
+          # slot-name: 'stagingslot'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
