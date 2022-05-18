@@ -5,3 +5,8 @@ itsdangerous==2.0.1
 Jinja2==3.0.1
 MarkupSafe==2.0.1
 Werkzeug==2.0.1
+msal==1.17.0
+requests==2.27.1
+flask_session
+azure-servicebus
+flask-session~=0.3.2
