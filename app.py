@@ -5,7 +5,7 @@ from flask import Flask, render_template, session, request, redirect, url_for
 from flask_session import Session  # https://pythonhosted.org/Flask-Session
 import msal
 import app_config
-from werkzeug.middleware.proxy_fix import ProxyFix
+
 from service_bus import send_to_servicebus,get_from_servicebus
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ debug=True
 app.config["TEMPLATES_AUTO_RELOAD"]= True
 Session(app)
 
-
+from werkzeug.middleware.proxy_fix import ProxyFix
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 @app.route("/")
