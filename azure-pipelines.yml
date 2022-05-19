@@ -6,29 +6,16 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
-strategy:
-  matrix:
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
+variables:
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
-
-- script: |
-    pip install pytest pytest-azurepipelines
-  displayName: 'pytest'
+  # Project root folder. Point to the folder containing manage.py file.
+  projectRoot: $(System.DefaultWorkingDirectory)
+  
+  # Python version: 3.7
+  pythonVersion: '3.7'
 
 stages:
 - stage: Build
@@ -42,7 +29,7 @@ stages:
       inputs:
         versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
-
+    
     - script: |
         python -m venv antenv
         source antenv/bin/activate
@@ -63,3 +50,28 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
+
+# jobs:
+#   - job: test pipeline
+#     pool:
+#       name: Azure Pipelines
+#     steps:
+#     - script: |
+  
+#         az --version
+  
+#         echo $(RESOURCE_GROUP_NAME)
+#         az appservice plan create \
+#         --name $(WEB_APP_NAME) \
+#         --resource-group blogpost \
+#         --sku B1 \
+#         --is-linux
+  
+#         az webapp create \
+#         --name $(WEB_APP_NAME)\
+#         --plan $(WEB_APP_NAME) \
+#         --resource-group blogpost \
+#         --runtime "Python|3.7" \
+#         --deployment-local-git
+
+#         az webapp deployment list-publishing-profiles --xml --resource-group Mixit2-rg --name wessel-simple-flask-app
