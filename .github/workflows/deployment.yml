@@ -10,16 +10,6 @@ on:
       - main
   workflow_dispatch:
 
-- task: AzureCLI@2
-  displayName: Azure CLI
-  inputs:
-    azureSubscription: 7421d281-52e1-4c64-b11d-12ee02151732
-    scriptType: ps
-    scriptLocation: inlineScript
-    inlineScript: |
-      az --version
-      az account show
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -63,9 +53,6 @@ jobs:
         with:
           name: python-app
           path: .
-      - name: Install dependencies
-      run: pip install -r requirements.txt
-      
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
