@@ -19,7 +19,9 @@ variables:
   environmentName: wessel-dev
 
   azureServiceConnectionId: wessel-service-connection
-  
+
+  webAppName: wessel-web-app
+
 stages:
 - stage: Build
   displayName: Build stage
