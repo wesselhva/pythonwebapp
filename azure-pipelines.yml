@@ -16,6 +16,8 @@ variables:
   # Python version: 3.7
   pythonVersion: '3.7'
 
+  environmentName: wessel-dev
+
 stages:
 - stage: Build
   displayName: Build stage
