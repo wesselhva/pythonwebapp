@@ -14,6 +14,7 @@
 {% if config.get("B2C_PROFILE_AUTHORITY") %}
 <li><a href='{{_build_auth_code_flow(authority=config["B2C_PROFILE_AUTHORITY"])["auth_uri"]}}'>Edit Profile</a></li>
 {% endif %}
+<h1>WESSEL</h1>
 
 <li><a href="/logout">Logout</a></li>
 {% endblock %}
